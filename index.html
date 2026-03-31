@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quiz — Pappers Justice</title>
+<link rel="icon" type="image/png" href="Pappers Favicon.png">
 <style>
 @font-face { font-family: Apercu; src: url("https://pappers-ui.netlify.app/Apercu_Regular-0KQsbvMr.otf") format("truetype"); font-weight: 400; }
 @font-face { font-family: Apercu; src: url("https://pappers-ui.netlify.app/Apercu_Medium-Cc3l67jS.otf") format("truetype"); font-weight: 500; }
@@ -30,9 +31,9 @@ header {
   justify-content: space-between;
 }
 .logo { display: flex; align-items: center; gap: 8px; }
-.logo img { height: 22px; }
+.logo img { height: 32px; }
 .logo-sep { width: 1px; height: 16px; background: #dde0e7; }
-.logo-sub { font-size: 13px; color: #848ea0; font-weight: 400; }
+.logo-sub { font-size: 13px; color: #848ea0; }
 .header-tag {
   font-size: 11px; font-weight: 700;
   color: #0d46a8; background: #e7ebf6;
@@ -76,7 +77,7 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 
 .q-body { padding: 24px 20px 20px; }
 .q-quote {
-  font-size: 1.1rem; font-weight: 400; font-style: italic;
+  font-size: 1.1rem; font-style: italic;
   line-height: 1.7; color: #0c0d10;
   border-left: 3px solid #0d46a8;
   padding-left: 16px;
@@ -94,8 +95,7 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 .choice {
   display: flex; align-items: center; gap: 12px;
   padding: 11px 14px;
-  border: 1px solid #dde0e7;
-  border-radius: 8px;
+  border: 1px solid #dde0e7; border-radius: 8px;
   background: #fff;
   cursor: pointer;
   font-family: Apercu, system-ui, sans-serif;
@@ -132,23 +132,8 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
 /* Email screen */
-.email-top {
-  display: flex; align-items: center; gap: 16px;
-  padding: 20px; border-bottom: 1px solid #dde0e7;
-  background: #f4f5f7;
-}
-.score-circle {
-  width: 64px; height: 64px; border-radius: 50%;
-  border: 2px solid #0d46a8; background: #fff;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.score-circle .n { font-size: 1.5rem; font-weight: 700; color: #0d46a8; line-height: 1; }
-.score-circle .d { font-size: 10px; color: #919cb0; }
-.email-msg-title { font-size: 15px; font-weight: 700; color: #0c0d10; margin-bottom: 4px; }
-.email-msg-body { font-size: 13px; color: #676f7d; line-height: 1.6; }
-
-.email-form { padding: 20px; }
+.email-form { padding: 24px 20px; }
+.email-intro { font-size: 14px; color: #676f7d; margin-bottom: 16px; line-height: 1.6; }
 .field-label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #676f7d; margin-bottom: 6px; }
 .input-wrap {
   display: flex; align-items: center; gap: 8px;
@@ -162,6 +147,13 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 .input-wrap input::placeholder { color: #b5bdca; }
 .field-error { display: none; font-size: 12px; color: #d82e22; margin-bottom: 10px; }
 .field-error.show { display: block; }
+.rgpd-label {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 6px; cursor: pointer;
+}
+.rgpd-label input { margin-top: 2px; accent-color: #0d46a8; flex-shrink: 0; }
+.rgpd-label span { font-size: 11px; color: #919cb0; line-height: 1.5; }
+.rgpd-label a { color: #919cb0; text-decoration: underline; }
 
 /* Buttons */
 .btn-primary {
@@ -171,10 +163,10 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
   border: none; border-radius: 8px;
   font-family: Apercu, system-ui, sans-serif; font-size: 14px; font-weight: 700;
   cursor: pointer; transition: background .1s;
+  text-decoration: none;
 }
 .btn-primary:hover:not(:disabled) { background: #0c4099; }
 .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
-
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 10px 16px; background: transparent;
@@ -186,14 +178,18 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 
 /* Final */
 .final { padding: 40px 20px; text-align: center; }
-.final-check {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: #ecf4f2; border: 1.5px solid #c4dcd7;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 16px; color: #428f7d; font-size: 22px;
+.score-circle {
+  width: 64px; height: 64px; border-radius: 50%;
+  border: 2px solid #0d46a8; background: #fff;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
 }
+.score-circle .n { font-size: 1.5rem; font-weight: 700; color: #0d46a8; line-height: 1; }
+.score-circle .d { font-size: 10px; color: #919cb0; }
 .final-title { font-size: 18px; font-weight: 700; color: #0c0d10; margin-bottom: 8px; }
 .final-body { font-size: 14px; color: #676f7d; line-height: 1.7; max-width: 360px; margin: 0 auto 24px; }
+.final-pitch { font-size: 13px; color: #676f7d; line-height: 1.6; max-width: 340px; margin: 0 auto 16px; }
+.final-cta { margin-bottom: 12px; }
 
 /* Footer */
 footer {
@@ -209,7 +205,7 @@ footer a:hover { color: #fff; }
 @media (max-width: 600px) {
   header, footer, .progress { padding: 0 16px; }
   main { padding: 16px 10px 48px; }
-  .q-body, .email-form, .email-top, .final { padding: 16px; }
+  .q-body, .email-form, .final { padding: 16px; }
 }
 </style>
 </head>
@@ -217,7 +213,7 @@ footer a:hover { color: #fff; }
 
 <header>
   <div class="logo">
-    <img src="https://justice.pappers.fr/_ipx/_/img/pappers-logo-blue.png" alt="Pappers Justice" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <img src="logo-pj.svg" alt="Pappers Justice" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <span style="display:none;font-size:15px;font-weight:700;color:#0d46a8">Pappers <span style="font-weight:400;color:#848ea0">Justice</span></span>
     <div class="logo-sep"></div>
     <span class="logo-sub">Citations juridiques</span>
@@ -249,26 +245,33 @@ footer a:hover { color: #fff; }
     </div>
 
     <div id="email-screen" class="screen">
-      <div class="email-form" style="padding: 24px 20px;">
-        <p style="font-size:14px;color:#676f7d;margin-bottom:16px;line-height:1.6;">Le quiz est terminé ! Entrez votre adresse e-mail pour découvrir votre score.</p>
+      <div class="email-form">
+        <p class="email-intro">Le quiz est terminé ! Entrez votre adresse e-mail pour découvrir votre score.</p>
         <label class="field-label" for="email-input">Adresse e-mail</label>
         <div class="input-wrap" id="input-wrap">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#b5bdca" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           <input type="email" id="email-input" placeholder="votre@email.com" oninput="clearErr()">
         </div>
         <div class="field-error" id="field-error">Adresse e-mail invalide.</div>
+        <label class="rgpd-label">
+          <input type="checkbox" id="rgpd-check" checked onchange="clearRgpdErr()">
+          <span>J'accepte que mes données soient utilisées conformément à la <a href="https://justice.pappers.fr/politique-de-protection-des-donnees-personnelles" target="_blank">politique de confidentialité</a>.</span>
+        </label>
+        <div class="field-error" id="rgpd-error">Veuillez accepter la politique de confidentialité pour continuer.</div>
         <button class="btn-primary" id="submit-btn" onclick="submit()">Voir mon score →</button>
       </div>
     </div>
 
     <div id="final-screen" class="screen">
       <div class="final">
-        <div class="score-circle" style="margin: 0 auto 20px;">
+        <div class="score-circle">
           <span class="n" id="score-n">0</span>
           <span class="d">/ 10</span>
         </div>
         <div class="final-title" id="final-title">Bien joué !</div>
         <div class="final-body" id="final-body">Score enregistré.</div>
+        <p class="final-pitch" id="pj-pitch"></p>
+        <a class="btn-primary final-cta" href="https://moncompte.pappers.fr/inscription?utm_source=pj&redirect=https%3A%2F%2Fjustice.pappers.fr%2F" target="_blank">Essayer Pappers Justice →</a>
         <button class="btn-ghost" onclick="restart()">← Recommencer</button>
       </div>
     </div>
@@ -281,12 +284,8 @@ footer a:hover { color: #fff; }
   <a href="https://justice.pappers.fr" target="_blank">justice.pappers.fr →</a>
 </footer>
 
+<script src="config.js"></script>
 <script>
-// ─────────────────────────────────────────
-// Collez ici l'URL de votre Google Apps Script
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxiv98sUc73kzeo7i32vH2G5wfXoPPvO48OjmtikhlxhvhUuWa8Lm7EX5TnaYH5rbNQ/exec";
-// ─────────────────────────────────────────
-
 const Q = [
   {q:"« Demain, grâce à vous, la justice française ne sera plus une justice qui tue. »",ctx:"Discours à l'Assemblée nationale pour mettre fin à la peine de mort en France.",c:["François Mitterrand","Robert Badinter","Jacques Chirac"],a:1},
   {q:"« C'est le 100e anniversaire de l'affaire Dreyfus... aujourd'hui on condamne un jardinier qui a le tort d'être maghrébin. »",ctx:"Plaidoirie dénonçant une injustice, parallèle avec l'Affaire Dreyfus.",c:["Jacques Vergès","Robert Badinter","Éric Dupond-Moretti"],a:0},
@@ -299,105 +298,153 @@ const Q = [
   {q:"« N'écoutez pas l'opinion publique — lorsqu'elle entre par une porte, la justice sort par l'autre »",ctx:"Plaidoirie sur l'influence de l'opinion publique (affaire Ranucci).",c:["Paul Lombard","Gisèle Halimi","Jean-Marc Varaut"],a:0},
   {q:"« Ne vous libérez pas ici d'une sorte de honte collective »",ctx:"Procès de Maurice Papon, forte pression mémorielle.",c:["Robert Badinter","Jean-Marc Varaut","Jacques Vergès"],a:1}
 ];
-const L=["A","B","C"];
-const MSG=[
-  {m:2,t:"Première audience…",b:"La bibliothèque du Palais vous attend."},
-  {m:5,t:"Des lacunes à combler",b:"Quelques pages restent encore à tourner."},
-  {m:7,t:"Honorable défense !",b:"Vous maîtrisez l'essentiel. Encore un effort."},
-  {m:9,t:"Excellent plaidoyer !",b:"Vous avez l'étoffe d'un grand juriste."},
-  {m:10,t:"Verdict parfait !",b:"La jurisprudence n'a plus de secrets pour vous."}
+const L = ["A","B","C"];
+const MSG = [
+  {m:2,  t:"Première audience…",    b:"La bibliothèque du Palais vous attend."},
+  {m:5,  t:"Des lacunes à combler", b:"Quelques pages restent encore à tourner."},
+  {m:7,  t:"Honorable défense !",   b:"Vous maîtrisez l'essentiel. Encore un effort."},
+  {m:9,  t:"Excellent plaidoyer !", b:"Vous avez l'étoffe d'un grand juriste."},
+  {m:10, t:"Verdict parfait !",     b:"La jurisprudence n'a plus de secrets pour vous."}
 ];
-const msg=s=>MSG.find(m=>s<=m.m)||MSG[4];
+const PITCH = [
+  {min:8, text:"Vous avez bien mérité un petit cadeau : essayez Pappers Justice gratuitement pendant une semaine."},
+  {min:5, text:"Pas mal ! Mais les meilleurs juristes s'entourent des meilleurs outils — essayez Pappers Justice."},
+  {min:0, text:"La jurisprudence n'a plus de secrets pour ceux qui ont les bons outils — essayez Pappers Justice."}
+];
 
-let i=0,score=0,done=false,answers=[];
+const msg   = s => MSG.find(m => s <= m.m) || MSG[4];
+const pitch = s => PITCH.find(p => s >= p.min).text;
 
-function render(){
-  const q=Q[i];
-  document.getElementById('q-tag').textContent=`Citation ${i+1}`;
-  document.getElementById('q-num').textContent=String(i+1).padStart(2,'0')+' / 10';
-  document.getElementById('q-quote').textContent=q.q;
-  document.getElementById('q-ctx').textContent=q.ctx;
-  document.getElementById('feedback').className='feedback';
-  document.getElementById('pbar').style.width=((i+1)/10*100)+'%';
-  document.getElementById('prog-label').textContent=`Question ${i+1} / 10`;
-  document.getElementById('prog-score').textContent=`${score} / 10`;
-  const ch=document.getElementById('choices');
-  ch.innerHTML='';
-  q.c.forEach((c,j)=>{
-    const b=document.createElement('button');
-    b.className='choice';
-    b.innerHTML=`<span class="badge">${L[j]}</span>${c}`;
-    b.onclick=()=>pick(j);
+function shuffle(arr) {
+  for (let j = arr.length - 1; j > 0; j--) {
+    const k = Math.floor(Math.random() * (j + 1));
+    [arr[j], arr[k]] = [arr[k], arr[j]];
+  }
+  return arr;
+}
+
+function buildDeck() {
+  return shuffle(Q.map(q => {
+    const order = shuffle([0, 1, 2]);
+    return {q: q.q, ctx: q.ctx, c: order.map(j => q.c[j]), a: order.indexOf(q.a)};
+  }));
+}
+
+let deck = [], i = 0, score = 0, done = false, answers = [];
+
+function render() {
+  const q = deck[i];
+  document.getElementById('q-tag').textContent  = `Citation ${i + 1}`;
+  document.getElementById('q-num').textContent  = String(i + 1).padStart(2, '0') + ' / 10';
+  document.getElementById('q-quote').textContent = q.q;
+  document.getElementById('q-ctx').textContent   = q.ctx;
+  document.getElementById('feedback').className  = 'feedback';
+  document.getElementById('pbar').style.width    = ((i + 1) / 10 * 100) + '%';
+  document.getElementById('prog-label').textContent = `Question ${i + 1} / 10`;
+  document.getElementById('prog-score').textContent = `${score} / 10`;
+  const ch = document.getElementById('choices');
+  ch.innerHTML = '';
+  q.c.forEach((c, j) => {
+    const b = document.createElement('button');
+    b.className = 'choice';
+    b.innerHTML = `<span class="badge">${L[j]}</span>${c}`;
+    b.onclick = () => pick(j);
     ch.appendChild(b);
   });
 }
 
-function pick(ci){
-  if(done)return; done=true;
-  const q=Q[i],ok=ci===q.a;
-  if(ok)score++;
-  answers.push({q:i+1,chosen:q.c[ci],correct:q.c[q.a],ok});
-  document.querySelectorAll('.choice').forEach((b,j)=>{
+function pick(ci) {
+  if (done) return;
+  done = true;
+  const q = deck[i], ok = ci === q.a;
+  if (ok) score++;
+  answers.push({q: i + 1, chosen: q.c[ci], correct: q.c[q.a], ok});
+  document.querySelectorAll('.choice').forEach((b, j) => {
     b.classList.add('locked');
-    if(j===q.a)b.classList.add('correct');
-    else if(j===ci&&!ok)b.classList.add('wrong');
-    else b.classList.add('dim');
+    if (j === q.a)          b.classList.add('correct');
+    else if (j === ci && !ok) b.classList.add('wrong');
+    else                    b.classList.add('dim');
   });
-  const fb=document.getElementById('feedback');
-  fb.textContent=ok?'✓ Bonne réponse !':'✗ Incorrect — '+q.c[q.a];
-  fb.className='feedback '+(ok?'ok':'ko');
-  document.getElementById('prog-score').textContent=`${score} / 10`;
+  const fb = document.getElementById('feedback');
+  fb.textContent = ok ? '✓ Bonne réponse !' : '✗ Incorrect — ' + q.c[q.a];
+  fb.className = 'feedback ' + (ok ? 'ok' : 'ko');
+  document.getElementById('prog-score').textContent = `${score} / 10`;
   setTimeout(next, 1700);
 }
 
-function next(){
+function next() {
   i++;
-  document.getElementById('pbar').style.width=(i/10*100)+'%';
-  if(i<Q.length){done=false;render();}
-  else{
+  document.getElementById('pbar').style.width = (i / 10 * 100) + '%';
+  if (i < deck.length) {
+    done = false;
+    render();
+  } else {
     show('email-screen');
-    document.getElementById('prog-label').textContent='Terminé !';
-    document.getElementById('pbar').style.width='100%';
+    document.getElementById('prog-label').textContent = 'Terminé !';
+    document.getElementById('pbar').style.width = '100%';
   }
 }
 
-function show(id){
-  ['q-screen','email-screen','final-screen'].forEach(s=>document.getElementById(s).classList.remove('active'));
+function show(id) {
+  ['q-screen', 'email-screen', 'final-screen'].forEach(s =>
+    document.getElementById(s).classList.remove('active')
+  );
   document.getElementById(id).classList.add('active');
 }
 
-function clearErr(){
+function clearErr() {
   document.getElementById('field-error').classList.remove('show');
   document.getElementById('input-wrap').classList.remove('err');
 }
 
-async function submit(){
-  const email=document.getElementById('email-input').value.trim();
-  if(!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+function clearRgpdErr() {
+  document.getElementById('rgpd-error').classList.remove('show');
+}
+
+async function submit() {
+  const email = document.getElementById('email-input').value.trim();
+  let valid = true;
+  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     document.getElementById('field-error').classList.add('show');
     document.getElementById('input-wrap').classList.add('err');
-    return;
+    valid = false;
   }
-  const btn=document.getElementById('submit-btn');
-  btn.disabled=true; btn.textContent='Envoi…';
-  try{
-    await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,score,date:new Date().toLocaleString('fr-FR'),answers})});
-  }catch(e){}
-  const m=msg(score);
-  document.getElementById('score-n').textContent=score;
-  document.getElementById('final-title').textContent=m.t;
-  document.getElementById('final-body').textContent=m.b;
+  if (!document.getElementById('rgpd-check').checked) {
+    document.getElementById('rgpd-error').classList.add('show');
+    valid = false;
+  }
+  if (!valid) return;
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Envoi…';
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({email, score, date: new Date().toLocaleString('fr-FR'), answers})
+    });
+  } catch(e) {}
+  const m = msg(score);
+  document.getElementById('score-n').textContent    = score;
+  document.getElementById('final-title').textContent = m.t;
+  document.getElementById('final-body').textContent  = m.b;
+  document.getElementById('pj-pitch').textContent   = pitch(score);
   show('final-screen');
 }
 
-function restart(){
-  i=0;score=0;done=false;answers=[];
-  document.getElementById('email-input').value='';
-  document.getElementById('submit-btn').disabled=false;
-  document.getElementById('submit-btn').textContent='Voir mon score →';
-  clearErr(); show('q-screen'); render();
+function restart() {
+  deck = buildDeck(); i = 0; score = 0; done = false; answers = [];
+  document.getElementById('email-input').value       = '';
+  document.getElementById('submit-btn').disabled     = false;
+  document.getElementById('submit-btn').textContent  = 'Voir mon score →';
+  document.getElementById('rgpd-check').checked      = true;
+  clearErr();
+  clearRgpdErr();
+  show('q-screen');
+  render();
 }
 
+deck = buildDeck();
 render();
 </script>
 </body>
