@@ -57,7 +57,7 @@ header {
 .progress-score { font-size: 12px; font-weight: 700; color: #0d46a8; white-space: nowrap; }
 
 /* Main */
-main { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 32px 16px 64px; }
+main { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 24px 16px 32px; }
 .card {
   background: #fff;
   border: 1px solid #dde0e7;
@@ -180,6 +180,20 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 .intro { padding: 48px 32px; text-align: center; }
 .intro-title { font-size: 22px; font-weight: 700; color: #0c0d10; margin-bottom: 10px; }
 .intro-desc { font-size: 14px; color: #676f7d; line-height: 1.7; max-width: 380px; margin: 0 auto 32px; }
+.star-box {
+  width: 80px; height: 80px; background: #ede5f7; border-radius: 20px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 4px 16px rgba(75,45,138,.15);
+  transition: box-shadow .35s;
+  cursor: pointer;
+}
+.star-box:hover { box-shadow: 0 10px 32px rgba(75,45,138,.32); }
+.star-box.on .star-inner { animation: spin3 2.2s cubic-bezier(.42,0,.58,1) forwards; }
+.star-inner { display: flex; align-items: center; justify-content: center; }
+@keyframes spin3 { from { transform: rotate(0deg) } to { transform: rotate(1080deg) } }
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
 
 /* Final */
 .final { padding: 40px 20px; text-align: center; }
@@ -209,7 +223,9 @@ footer a:hover { color: #fff; }
 
 @media (max-width: 600px) {
   header, footer, .progress { padding: 0 16px; }
-  main { padding: 16px 10px 48px; }
+  main { padding: 12px 10px 16px; }
+  .intro { padding: 28px 20px; }
+  .star-box { width: 64px; height: 64px; border-radius: 16px; }
   .q-body, .email-form, .final { padding: 16px; }
 }
 </style>
@@ -237,9 +253,16 @@ footer a:hover { color: #fff; }
 
     <div id="intro-screen" class="screen active">
       <div class="intro">
+        <div class="star-box" id="star-box">
+          <div class="star-inner" id="star-inner">
+            <svg width="44" height="44" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#4B2D8A" d="M 34.5,4 Q 36,-2 37.5,4 C 44,22 51,30 68,34.5 Q 74,36 68,37.5 C 51,42 44,50 37.5,68 Q 36,74 34.5,68 C 28,50 21,42 4,37.5 Q -2,36 4,34.5 C 21,30 28,22 34.5,4 Z"/>
+            </svg>
+          </div>
+        </div>
         <div class="intro-title">Quiz</div>
         <div class="intro-desc">Retrouvez les auteurs de ces citations</div>
-        <button class="btn-primary" onclick="start()">Démarrer →</button>
+        <button class="btn-primary" onclick="startWithAnim()">Démarrer →</button>
       </div>
     </div>
 
@@ -460,6 +483,33 @@ function restart() {
   clearErr();
   clearRgpdErr();
   show('intro-screen');
+}
+
+// Star animation
+const starBox = document.getElementById('star-box');
+const starInner = document.getElementById('star-inner');
+let starOn = false;
+
+function triggerStar() {
+  if (starOn) return;
+  starOn = true;
+  starBox.classList.add('on');
+}
+
+function resetStar() {
+  starBox.classList.remove('on');
+  starInner.style.animation = 'none';
+  void starInner.offsetWidth;
+  starInner.style.animation = '';
+  starOn = false;
+}
+
+starBox.addEventListener('mouseenter', triggerStar);
+starInner.addEventListener('animationend', resetStar);
+
+function startWithAnim() {
+  triggerStar();
+  setTimeout(start, 800);
 }
 </script>
 </body>
