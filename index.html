@@ -176,6 +176,11 @@ main { flex: 1; display: flex; justify-content: center; align-items: flex-start;
 }
 .btn-ghost:hover { background: #f4f5f7; }
 
+/* Intro */
+.intro { padding: 48px 32px; text-align: center; }
+.intro-title { font-size: 22px; font-weight: 700; color: #0c0d10; margin-bottom: 10px; }
+.intro-desc { font-size: 14px; color: #676f7d; line-height: 1.7; max-width: 380px; margin: 0 auto 32px; }
+
 /* Final */
 .final { padding: 40px 20px; text-align: center; }
 .score-circle {
@@ -221,7 +226,7 @@ footer a:hover { color: #fff; }
   <div class="header-tag">Quiz</div>
 </header>
 
-<div class="progress">
+<div class="progress" id="progress-bar" style="display:none">
   <span class="progress-text" id="prog-label">Question 1 / 10</span>
   <div class="progress-track"><div class="progress-fill" id="pbar"></div></div>
   <span class="progress-score" id="prog-score">0 / 10</span>
@@ -230,7 +235,15 @@ footer a:hover { color: #fff; }
 <main>
   <div class="card">
 
-    <div id="q-screen" class="screen active">
+    <div id="intro-screen" class="screen active">
+      <div class="intro">
+        <div class="intro-title">Quiz</div>
+        <div class="intro-desc">Retrouvez les auteurs de ces citations</div>
+        <button class="btn-primary" onclick="start()">Démarrer →</button>
+      </div>
+    </div>
+
+    <div id="q-screen" class="screen">
       <div class="q-header">
         <span class="q-header-tag" id="q-tag">Citation 1</span>
         <span class="q-header-num" id="q-num">01 / 10</span>
@@ -386,10 +399,17 @@ function next() {
 }
 
 function show(id) {
-  ['q-screen', 'email-screen', 'final-screen'].forEach(s =>
+  ['intro-screen', 'q-screen', 'email-screen', 'final-screen'].forEach(s =>
     document.getElementById(s).classList.remove('active')
   );
   document.getElementById(id).classList.add('active');
+  document.getElementById('progress-bar').style.display = id === 'q-screen' ? 'flex' : 'none';
+}
+
+function start() {
+  deck = buildDeck(); i = 0; score = 0; done = false; answers = [];
+  show('q-screen');
+  render();
 }
 
 function clearErr() {
@@ -433,19 +453,14 @@ async function submit() {
 }
 
 function restart() {
-  deck = buildDeck(); i = 0; score = 0; done = false; answers = [];
-  document.getElementById('email-input').value       = '';
-  document.getElementById('submit-btn').disabled     = false;
-  document.getElementById('submit-btn').textContent  = 'Voir mon score →';
-  document.getElementById('rgpd-check').checked      = true;
+  document.getElementById('email-input').value      = '';
+  document.getElementById('submit-btn').disabled    = false;
+  document.getElementById('submit-btn').textContent = 'Voir mon score →';
+  document.getElementById('rgpd-check').checked     = true;
   clearErr();
   clearRgpdErr();
-  show('q-screen');
-  render();
+  show('intro-screen');
 }
-
-deck = buildDeck();
-render();
 </script>
 </body>
 </html>
